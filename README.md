@@ -61,15 +61,15 @@ A tabela abaixo apresenta a tabela verdade de um comparador sequencial de 1 bit.
 Com base na tabela, podemos escrever as expressões lógicas para cada saída:
 
 $$
-\text{out\_gt} = (A \cdot \overline{B}) + (\overline{A} \cdot \overline{B} \cdot \text{in\_gt}) + (A \cdot B \cdot \text{in\_gt})
+out_{gt} = (A \cdot \overline{B}) + (\overline{A} \cdot \overline{B} \cdot in_{gt}) + (A \cdot B \cdot in_{gt})
 $$
 
 $$
-\text{out\_eq} = (\overline{A} \cdot \overline{B} + A \cdot B) \cdot \text{in\_eq}
+out_{eq} = (\overline{A} \cdot \overline{B} + A \cdot B) \cdot in_{eq}
 $$
 
 $$
-\text{out\_lt} = (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot \text{in\_lt}) + (A \cdot B \cdot \text{in\_lt})
+out_{lt} = (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot in{_lt}) + (A \cdot B \cdot in_{lt})
 $$
 
 ### 2.2. Mux de 2 Canais
