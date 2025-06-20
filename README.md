@@ -83,6 +83,7 @@ A expressão simplificada do multiplexador é dada por:
 $$
 Y = \overline{S} \cdot I_0 + S \cdot I_1
 $$
+
 Para um multiplexador de N bits, a equação se aplica a cada bit:
 
 $$
