@@ -69,7 +69,7 @@ out_{eq} = (\overline{A} \cdot \overline{B} + A \cdot B) \cdot in_{eq}
 $$
 
 $$
-out_{lt} = (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot in{_lt}) + (A \cdot B \cdot in_{lt})
+out_{lt} = (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot in_{lt}) + (A \cdot B \cdot in_{lt})
 $$
 
 ### 2.2. Mux de 2 Canais
@@ -79,12 +79,14 @@ Para fazer escolhas, normalmente o componente utilizado é o multiplexador, que 
 *Figura 2: Esquemático do multiplexador simples.*
 
 A expressão simplificada do multiplexador é dada por:
+
 $$
 Y = \overline{S} \cdot I_0 + S \cdot I_1
 $$
 Para um multiplexador de N bits, a equação se aplica a cada bit:
+
 $$
-Y^{(n)} = \overline{S} \cdot I_0^{(n)} + S \cdot I_1^{(n)}
+Y^n = \overline{S} \cdot I_0^n + S \cdot I_1^n
 $$
 
 ### 2.3. Registradores em RTL
