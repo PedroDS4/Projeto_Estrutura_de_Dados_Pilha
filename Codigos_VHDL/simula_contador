@@ -1,0 +1,21 @@
+vsim work.contador
+
+add wave *
+
+force clr '1' 0 ns
+
+
+# Gera clock com período de 2 ns (1 ns alto, 1 ns baixo)
+force clk 0 0 ns, 1 0.25 ns -repeat 0.5 ns
+
+
+force count '1' 0 ns
+
+force up_dw '1' 0 ns
+
+
+# Pressiona botão T a partir de 3 ns (simulando o início da operação)
+
+force clr '0' 1 ns
+# Roda a simulação p 3 ns
+run 9 ns

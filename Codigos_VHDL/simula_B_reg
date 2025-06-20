@@ -1,0 +1,53 @@
+vsim work.B_reg
+
+add wave *
+
+# 1. Configuração inicial do Clock e Reset
+force clk 0 0 ns, 1 0.25 ns -repeat 0.5 ns
+force clr '0' 0 ns
+force en_wr '0' 0 ns
+force en_rd '0' 0 ns
+force w_data "0000000000000" 0 ns
+force addr_w "000" 0 ns
+force addr_r "000" 0 ns
+
+# 2. Libera o Reset (após 2 ciclos de clock)
+
+# --- Operação de Escrita ---
+
+# Ciclo 1: Escreve "1" (0...001) no registrador 0 (V_0)
+force addr_w "000" 1.0 ns
+force w_data "0000000000001" 1.0 ns
+force en_wr '1' 1.0 ns
+# A escrita ocorrerá na borda de subida do clk em 1.25 ns
+
+force en_wr '0' 1.5 ns
+
+# Ciclo 2: Escreve "3" (0...011) no registrador 1 (V_1)
+force addr_w "001" 1.5 ns
+force w_data "0000000000011" 1.5 ns
+force en_wr '1' 1.5 ns
+# A escrita ocorrerá na borda de subida do clk em 1.75 ns
+
+force en_wr '0' 2.0 ns
+
+# --- Operação de Leitura ---
+
+# Ciclo 3: Lê do registrador 0 (onde escrevemos "1")
+force addr_r "000" 2.0 ns
+# V_i deve se tornar "0000000000001" combinacionalmente neste ponto
+force en_rd '1' 2.0 ns
+# r_data carregará "0000000000001" na borda de subida do clk em 2.25 ns
+
+force en_rd '0' 2.5 ns
+
+# Ciclo 4: Lê do registrador 1 (onde escrevemos "3")
+force addr_r "001" 2.5 ns
+# V_i deve se tornar "0000000000011" combinacionalmente neste ponto
+force en_rd '1' 2.5 ns
+# r_data carregará "0000000000011" na borda de subida do clk em 2.75 ns
+
+force en_rd '0' 3.0 ns
+
+# Roda a simulação por um tempo suficiente
+run 5 ns

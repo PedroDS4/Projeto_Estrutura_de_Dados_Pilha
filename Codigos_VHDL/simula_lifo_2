@@ -1,0 +1,26 @@
+vsim work.LIFO
+add wave *
+
+# === CLOCK ===
+force clk 0 0 ns, 1 0.25 ns -repeat 0.5 ns
+
+# === RESET ===
+force clr '1' 0 ns
+force clr '0' 1 ns
+
+# === Inicializa ===
+force wr '0' 0 ns
+force rd '0' 0 ns
+force w_data "1000000111111" 0 ns
+
+# === Escrita 1 ===
+force wr '1' 2 ns
+# aguarda 1 ciclo de clock inteiro para a FSM reconhecer e escrever
+force wr '0' 3 ns
+# mantém w_data válido pelo menos até o final de 3 ns
+force w_data "0000000000000" 4 ns
+
+# === Leitura 1 ===
+force rd '1' 5 ns
+
+run 7 ns
