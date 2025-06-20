@@ -59,9 +59,18 @@ A tabela abaixo apresenta a tabela verdade de um comparador sequencial de 1 bit.
 | 1 | 1 |    0    |    0    |    1    |     0    |     0    |     1    |
 
 Com base na tabela, podemos escrever as expressões lógicas para cada saída:
-- `out_gt` $= (A \cdot \overline{B}) + (\overline{A} \cdot \overline{B} \cdot \text{in\_gt}) + (A \cdot B \cdot \text{in\_gt})$
-- `out_eq` $= (\overline{A} \cdot \overline{B} + A \cdot B) \cdot \text{in\_eq}$
-- `out_lt` $= (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot \text{in\_lt}) + (A \cdot B \cdot \text{in\_lt})$
+
+$$
+\text{out\_gt} = (A \cdot \overline{B}) + (\overline{A} \cdot \overline{B} \cdot \text{in\_gt}) + (A \cdot B \cdot \text{in\_gt})
+$$
+
+$$
+\text{out\_eq} = (\overline{A} \cdot \overline{B} + A \cdot B) \cdot \text{in\_eq}
+$$
+
+$$
+\text{out\_lt} = (\overline{A} \cdot B) + (\overline{A} \cdot \overline{B} \cdot \text{in\_lt}) + (A \cdot B \cdot \text{in\_lt})
+$$
 
 ### 2.2. Mux de 2 Canais
 Para fazer escolhas, normalmente o componente utilizado é o multiplexador, que seleciona uma das entradas com base em uma chave seletora (Vahid). Um multiplexador 2:1 possui duas entradas de dados ($I_0$ e $I_1$), uma linha de seleção $S$, e uma única saída $Y$.
@@ -70,7 +79,13 @@ Para fazer escolhas, normalmente o componente utilizado é o multiplexador, que 
 *Figura 2: Esquemático do multiplexador simples.*
 
 A expressão simplificada do multiplexador é dada por:
-$$Y = \overline{S} \cdot I_0 + S \cdot I_1$$Para um multiplexador de N bits, a equação se aplica a cada bit:$$Y^{(n)} = \overline{S} \cdot I_0^{(n)} + S \cdot I_1^{(n)}$$
+$$
+Y = \overline{S} \cdot I_0 + S \cdot I_1
+$$
+Para um multiplexador de N bits, a equação se aplica a cada bit:
+$$
+Y^{(n)} = \overline{S} \cdot I_0^{(n)} + S \cdot I_1^{(n)}
+$$
 
 ### 2.3. Registradores em RTL
 No projeto RTL (Register Transfer Level), abstraímos a lógica combinacional para ser a entrada de um registrador de carga paralela. A lógica do circuito se concentra na transferência de dados entre registradores.
@@ -125,7 +140,9 @@ Um registrador armazena um valor até que o sinal de `load` seja ativado em uma 
 *Figura 6: Registrador Básico.*
 
 A equação de estado do registrador é:
-$$Q^{(i+1)} = (\overline{\text{load}} \cdot Q^i + \text{load} \cdot I) \cdot \text{clk}^{\uparrow}$$
+$$
+Q^{(i+1)} = (\overline{\text{load}} \cdot Q^i + \text{load} \cdot I)
+$$
 
 ### 3.4. Banco de Registradores
 Este componente é a memória da pilha. Ele é composto por 8 registradores de 13 bits em paralelo, um decodificador 3x8 para a escrita e um multiplexador 8x1 para a leitura.
