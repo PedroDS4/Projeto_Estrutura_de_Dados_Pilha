@@ -163,7 +163,7 @@ A implementação em VHDL seguiu o método de projeto RTL, com os blocos de Data
 ### 4.1. Diagrama de Blocos Completo
 O diagrama abaixo mostra a interconexão final entre o Controlador e o Datapath.
 
-![Projeto Completo da Pilha](figuras/LIFO.projeto.png)
+![Projeto Completo da Pilha](figuras/LIFO_projeto.png)
 *Figura 11: Projeto Completo da Pilha.*
 
 ### 4.2. Código VHDL
