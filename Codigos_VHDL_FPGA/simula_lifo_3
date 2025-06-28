@@ -1,0 +1,46 @@
+vsim work.LIFO
+
+add wave *
+
+# 1. Força o RESET (ativo em '0') no início da simulação
+# Isso vai inicializar todos os componentes que usam 'clr' ou 'clr_life'
+force clr '1' 0 ns
+force clr '0' 1 ns
+
+
+# 2. Gera o clock
+force clk 0 0 ns, 1 0.25 ns -repeat 0.5 ns
+
+# 3. Define valores iniciais para outras entradas se necessário
+# Exemplo de dado a ser escrito
+force w_data "0000000000001" 0 ns
+# Garante que 'wr' comece desativado
+force wr '0' 0 ns
+# Garante que 'rd' comece desativado
+force rd '0' 0 ns
+# Garante que 'up_dw' comece desativado (se aplicável ao estado inicial do controlador)
+force up_dw '0' 0 ns
+
+
+
+
+# 5. Inicia as operações da pilha (push/pop) APÓS o reset ser liberado
+# Dados para o primeiro push
+force w_data "0000000000001" 2.0 ns
+# Ativa a escrita
+force wr '1' 2 ns
+# Desativa a escrita
+force wr '0' 3 ns
+
+# Exemplo de outro push:
+force w_data "0000000000011" 2.5 ns
+force wr '1' 4 ns
+force wr '0' 5 ns
+
+# Exemplo de pop:
+force rd '1' 6 ns
+force rd '0' 7 ns
+
+
+# Roda a simulação por um tempo mais longo para observar o comportamento
+run 10 ns

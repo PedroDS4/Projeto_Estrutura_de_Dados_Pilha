@@ -1,0 +1,29 @@
+vsim work.LIFO
+
+add wave *
+
+
+# Gera clock com período de 2 ns (1 ns alto, 1 ns baixo)
+force clk 0 0 ns, 1 0.25 ns -repeat 0.5 ns
+
+#force V "0001100100" 0 ns
+
+force w_data "0000000000001" 0 ns
+force wr '1' 0 ns
+
+force wr '0' 0.25 ns
+
+force w_data "0000000000011" 0.25 ns
+force wr '1' 0.25 ns
+
+force wr '0' 0.5 ns
+
+force rd '1' 1 ns
+
+force rd '0' 1.25 ns
+
+
+force clr '1' 1.5 ns
+
+# Roda a simulação por 20 ns
+run 3ns
